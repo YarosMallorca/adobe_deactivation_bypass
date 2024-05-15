@@ -21,6 +21,7 @@ Note: This requires a cracked version of the Adobe software to work.
 
    - Open Terminal
    - cd to the directory where the script is located
-   - Run the script with the `--apply` flag
+   - Make the script executable with `chmod +x adobe_deactivation_bypass`
+   - Run the script with the `sudo ./adobe_deactivation_bypass --apply` flag
 
 3. Done! Enjoy your Adobe software without any limitations!
