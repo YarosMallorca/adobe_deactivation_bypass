@@ -4,6 +4,10 @@ This is a simple script that allows you to bypass the Adobe Creative Cloud deact
 
 Note: This requires a cracked version of the Adobe software to work.
 
+Remove this easily with this script:
+
+<img src="https://github.com/YarosMallorca/adobe_deactivation_bypass/assets/54041533/571a2a7e-fb68-4708-817c-8d0546416d3f" height="300px" />
+
 ## How to use
 
 1. Download the script from the [releases page](https://github.com/YarosMallorca/adobe_deactivation_bypass/releases/latest)
@@ -13,15 +17,14 @@ Note: This requires a cracked version of the Adobe software to work.
    On Windows:
 
    - Open Terminal as Administrator
-   - Drag the script into the terminal window
-   - Add the `--apply` flag at the end of the command
-   - Press Enter
+   - cd to the directory with the script exe file
+   - Run the script: `.\adobe_deactivation_bypass --apply`
 
    On macOS:
 
    - Open Terminal
    - cd to the directory where the script is located
    - Make the script executable with `chmod +x adobe_deactivation_bypass`
-   - Run the script with the `sudo ./adobe_deactivation_bypass --apply` flag
+   - Run the script: `sudo ./adobe_deactivation_bypass --apply`
 
 3. Done! Enjoy your Adobe software without any limitations!
