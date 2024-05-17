@@ -8,6 +8,10 @@ Remove this easily with this script:
 
 <img src="https://github.com/YarosMallorca/adobe_deactivation_bypass/assets/54041533/571a2a7e-fb68-4708-817c-8d0546416d3f" height="300px" />
 
+### Known side effects
+
+This might lead to some adobe-related sites (like Adobe Login and Adobe Stock) to not load. If this happens, remove the script temporarily using the `--remove` argument, then reapply when you want to use Adobe Software again.
+
 ## How to use
 
 1. Download the script from the [releases page](https://github.com/YarosMallorca/adobe_deactivation_bypass/releases/latest)
