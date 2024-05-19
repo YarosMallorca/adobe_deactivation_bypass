@@ -27,8 +27,8 @@ This might lead to some adobe-related sites (like Adobe Login and Adobe Stock) t
    On macOS:
 
    - Open Terminal
-   - cd to the directory where the script is located
-   - Make the script executable with `chmod +x adobe_deactivation_bypass`
-   - Run the script: `sudo ./adobe_deactivation_bypass --apply`
+   - cd to the directory where the script is located (usually it is your Downloads folder (```cd ~/Downloads```))
+   - Make the script executable with `chmod +x adobe_deactivation_bypass_mac`
+   - Run the script: `sudo ./adobe_deactivation_bypass_mac --apply`
 
 3. Done! Enjoy your Adobe software without any limitations!
