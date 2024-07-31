@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:http/http.dart';
+
 File _hosts = Platform.isWindows
     ? File(r'C:\Windows\System32\drivers\etc\hosts')
     : File('/etc/hosts');
@@ -15,36 +17,47 @@ class AdobeBypass {
   /// Exits the script if an error occurs
   /// or if the user doesn't have the necessary permissions
   static void applyBypass(bool noDns) {
-    final blockList = File('blocklist.txt').readAsLinesSync();
-    String content = '\n# Adobe Deactivation Bypass\n';
-    for (String line in blockList) {
-      content += '127.0.0.1 $line\n';
-    }
-    content += '# End of Adobe Deactivation Bypass\n';
-    try {
-      _hosts.writeAsStringSync(content, mode: FileMode.append);
-    } on PathAccessException catch (_) {
-      print('Permission denied.');
-      print('Please run the script as an administrator.');
-      if (Platform.isMacOS) {
-        print('You can run the following command:');
-        print('sudo ./adobe_bypass');
+    get(Uri.https('raw.githubusercontent.com',
+            '/YarosMallorca/adobe_deactivation_bypass/main/blocklist.txt'))
+        .then((response) {
+      if (response.statusCode == 200) {
+        String content = '\n# Adobe Deactivation Bypass\n';
+        for (String line in response.body.split('\n')) {
+          content += '127.0.0.1 $line\n';
+        }
+        content += '# End of Adobe Deactivation Bypass\n';
+        try {
+          _hosts.writeAsStringSync(content, mode: FileMode.append);
+        } on PathAccessException catch (_) {
+          print('Permission denied.');
+          print('Please run the script as an administrator.');
+          if (Platform.isMacOS) {
+            print('You can run the following command:');
+            print('sudo ./adobe_bypass');
+          }
+          exit(1);
+        } on FileSystemException catch (_) {
+          print('An error occurred while writing to the hosts file.');
+          print('Please try again.');
+          exit(1);
+        } catch (e) {
+          print("An error occurred: $e");
+          exit(1);
+        }
+        if (noDns) {
+          return;
+        }
+        if (!noDns) {
+          Process.runSync(_dnsCommand, [], runInShell: true);
+        }
+      } else {
+        print('Failed to fetch the list of blocked domains.');
+        exit(1);
       }
+    }).catchError((e) {
+      print('An error occurred: $e');
       exit(1);
-    } on FileSystemException catch (_) {
-      print('An error occurred while writing to the hosts file.');
-      print('Please try again.');
-      exit(1);
-    } catch (e) {
-      print("An error occurred: $e");
-      exit(1);
-    }
-    if (noDns) {
-      return;
-    }
-    if (!noDns) {
-      Process.runSync(_dnsCommand, [], runInShell: true);
-    }
+    });
   }
 
   static void removeBypass(bool noDns) {

@@ -23,47 +23,58 @@ void main(List<String> arguments) {
 
   AdobeBypass.checkCompatibility();
 
-  final ArgResults argResults = argParser.parse(arguments);
+  try {
+    final ArgResults argResults = argParser.parse(arguments);
 
-  if (argResults['help']) {
-    print(argParser.usage);
-    return;
-  }
+    if (argResults['help']) {
+      print(argParser.usage);
+      return;
+    }
 
-  if (argResults['status']) {
+    if (argResults['status']) {
+      if (AdobeBypass.checkStatus()) {
+        print('Adobe Deactivation Bypass is applied.');
+      } else {
+        print('Adobe Deactivation Bypass is not applied.');
+      }
+      return;
+    }
+
+    if (argResults['version']) {
+      print('Adobe Deactivation Bypass v1.0.0');
+      return;
+    }
+
+    if (argResults['apply']) {
+      if (!AdobeBypass.checkStatus()) {
+        AdobeBypass.applyBypass(argResults['no-dns']);
+        print('Adobe Deactivation Bypass applied successfully.');
+      } else {
+        if (AdobeBypass.checkStatus()) {
+          print('Adobe Deactivation Bypass is already applied.');
+          print('Rerun script with --remove flag to remove it.');
+          return;
+        }
+      }
+
+      return;
+    }
+
+    if (argResults['remove']) {
+      AdobeBypass.removeBypass(argResults['no-dns']);
+      print('Adobe Deactivation Bypass removed successfully.');
+      return;
+    }
+
     if (AdobeBypass.checkStatus()) {
       print('Adobe Deactivation Bypass is applied.');
-    } else {
-      print('Adobe Deactivation Bypass is not applied.');
-    }
-    return;
-  }
-
-  if (argResults['version']) {
-    print('Adobe Deactivation Bypass v1.0.0');
-    return;
-  }
-
-  if (argResults['apply']) {
-    if (!AdobeBypass.checkStatus()) {
-      AdobeBypass.applyBypass(argResults['no-dns']);
-      print('Adobe Deactivation Bypass applied successfully.');
-    } else {
-      if (AdobeBypass.checkStatus()) {
-        print('Adobe Deactivation Bypass is already applied.');
-        print('Rerun script with --remove flag to remove it.');
-        return;
-      }
+      print('Rerun script with --remove flag to remove it.');
+      return;
     }
 
-    return;
+    print('Rerun script with --apply flag to apply the bypass.');
+  } on FormatException catch (_) {
+    print('Invalid arguments.');
+    print(argParser.usage);
   }
-
-  if (argResults['remove']) {
-    AdobeBypass.removeBypass(argResults['no-dns']);
-    print('Adobe Deactivation Bypass removed successfully.');
-    return;
-  }
-
-  print('Rerun script with --apply flag to apply the bypass.');
 }
