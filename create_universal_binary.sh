@@ -16,6 +16,8 @@ unzip -q dart-sdk-arm64.zip -d dart-sdk-arm64
 rm dart-sdk-arm64.zip
 echo "Dart SDK for arm64 downloaded and extracted."
 
+mkdir build/
+
 # Compile Dart program for x86_64
 echo "Compiling Dart program for x86_64..."
 dart-sdk-x86_64/dart-sdk/bin/dart compile exe bin/adobe_deactivation_bypass.dart -o build/adobe_deactivation_bypass_x86_64
@@ -29,4 +31,5 @@ echo "Dart program compiled for arm64."
 # Clean up downloaded Dart SDKs
 rm -rf dart-sdk-x86_64
 rm -rf dart-sdk-arm64
+
 echo "Cleanup complete."
