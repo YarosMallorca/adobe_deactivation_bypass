@@ -41,7 +41,7 @@ void main(List<String> arguments) {
     }
 
     if (argResults['version']) {
-      print('Adobe Deactivation Bypass v1.0.0');
+      print('Adobe Deactivation Bypass v1.1.0');
       return;
     }
 
