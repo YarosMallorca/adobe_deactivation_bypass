@@ -1,6 +1,6 @@
 # Adobe Deactivation Bypass
 
-This is a simple script that allows you to bypass the Adobe Creative Cloud deactivation limit.
+This simple script allows you to bypass the Adobe Creative Cloud deactivation limit.
 
 Note: This requires a cracked version of the Adobe software to work.
 
@@ -22,13 +22,13 @@ This might lead to some adobe-related sites (like Adobe Login and Adobe Stock) t
 
    - Open Terminal as Administrator
    - cd to the directory with the script exe file
-   - Run the script: `.\adobe_deactivation_bypass --apply`
+   - Run the script: `.\adobe_deactivation_bypass_win.exe --apply`
 
    On macOS:
 
    - Open Terminal
    - cd to the directory where the script is located (usually it is your Downloads folder (```cd ~/Downloads```))
    - Make the script executable with `chmod +x adobe_deactivation_bypass_mac`
-   - Run the script: `sudo ./adobe_deactivation_bypass_mac --apply`
+   - Run the script: `sudo ./adobe_deactivation_bypass_mac --apply`, you will have to change the command depending on the actual binary name, usually `adobe_deactivation_bypass_mac_arm`, or `adobe_deactivation_bypass_mac_intel`. 
 
 3. Done! Enjoy your Adobe software without any limitations!
