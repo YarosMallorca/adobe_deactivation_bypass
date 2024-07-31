@@ -1,7 +1,5 @@
 import 'dart:io';
 
-import 'package:adobe_deactivation_bypass/blocklist.dart';
-
 File _hosts = Platform.isWindows
     ? File(r'C:\Windows\System32\drivers\etc\hosts')
     : File('/etc/hosts');
@@ -17,7 +15,7 @@ class AdobeBypass {
   /// Exits the script if an error occurs
   /// or if the user doesn't have the necessary permissions
   static void applyBypass(bool noDns) {
-    List blockList = blocklist.trim().split('\n');
+    final blockList = File('blocklist.txt').readAsLinesSync();
     String content = '\n# Adobe Deactivation Bypass\n';
     for (String line in blockList) {
       content += '127.0.0.1 $line\n';
