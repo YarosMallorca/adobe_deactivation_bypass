@@ -18,12 +18,14 @@ class AdobeBypass {
   /// or if the user doesn't have the necessary permissions
   static void applyBypass(bool noDns) {
     get(Uri.https('raw.githubusercontent.com',
-            '/YarosMallorca/adobe_deactivation_bypass/main/blocklist.txt'))
+            '/ignaciocastro/a-dove-is-dumb/main/list.txt'))
         .then((response) {
       if (response.statusCode == 200) {
         String content = '\n# Adobe Deactivation Bypass\n';
-        for (String line in response.body.split('\n')) {
-          content += '127.0.0.1 $line\n';
+        String cleanedUpResponse =
+            response.body.replaceAll(RegExp(r'#.*'), '').trim();
+        for (String line in cleanedUpResponse.split('\n')) {
+          content += '$line\n';
         }
         content += '# End of Adobe Deactivation Bypass\n';
         try {
